@@ -3,16 +3,29 @@ var root = ReactDOM.createRoot(document.getElementById("root"));
 //function component ve class component olarak iki ayrı component vardır.
 
 class TodoApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.clearItems = this.clearItems.bind(this);
+        this.state = {
+            items: ['Görev 1', 'Görev 2', 'Görev 3']
+        }
+    }
+
+    clearItems() {
+        this.setState({
+            items: []
+        })
+    }
+
     render() {
         const data = {
             title: "Todo Application",
             description: "Bekleyen Görevler",
-            items: ['Görev 1', 'Görev 2', 'Görev 3']
         }
         return (
             <div>
                 <Header title={data.title} description={data.description} />
-                <TodoList items={data.items} />
+                <TodoList items={this.state.items} clear={this.clearItems} />
                 <NewItem />
             </div>
         )
@@ -32,14 +45,6 @@ class Header extends React.Component {
 }
 
 class TodoList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.clearItems = this.clearItems.bind(this);
-    }
-    clearItems() {
-        console.log("clear items")
-        console.log(this.props.items);
-    }
     render() {
         return (
             <div>
@@ -48,7 +53,7 @@ class TodoList extends React.Component {
                         this.props.items.map((item, index) => <TodoItem key={index} item={item} />)
                     }
                 </ul>
-                <button onClick={this.clearItems}>Temizle</button>
+                <button onClick={this.props.clear}>Temizle</button>
             </div>
         )
     }
