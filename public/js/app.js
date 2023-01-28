@@ -84,12 +84,21 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("Component oluşturuldu.");
+      var json_obj = localStorage.getItem("items");
+      var items = JSON.parse(json_obj);
+      if (items) {
+        this.setState({
+          items: items
+        });
+      }
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      console.log("Component güncellendi.");
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.items.length !== this.state.items.length) {
+        var json_str = JSON.stringify(this.state.items);
+        localStorage.setItem("items", json_str);
+      }
     }
   }]);
   return TodoApp;

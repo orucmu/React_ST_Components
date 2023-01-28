@@ -55,11 +55,21 @@ class TodoApp extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Component oluşturuldu.");
+        const json_obj = localStorage.getItem("items");
+        const items = JSON.parse(json_obj);
+
+        if (items) {
+            this.setState({
+                items: items
+            })
+        }
     }
 
-    componentDidUpdate() {
-        console.log("Component güncellendi.");
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.items.length !== this.state.items.length) {
+            const json_str = JSON.stringify(this.state.items);
+            localStorage.setItem("items", json_str)
+        }
     }
 }
 
