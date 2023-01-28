@@ -81,6 +81,16 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
         addItem: this.addItem
       }));
     }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("Component oluşturuldu.");
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      console.log("Component güncellendi.");
+    }
   }]);
   return TodoApp;
 }(React.Component);
@@ -162,6 +172,11 @@ var NewItem = /*#__PURE__*/function (_React$Component4) {
         type: "submit"
       }, "Ekle")));
     }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      console.log("NewItem componenti güncellendi.");
+    }
   }]);
   return NewItem;
 }(React.Component);
@@ -186,6 +201,11 @@ var TodoItem = /*#__PURE__*/function (_React$Component5) {
       return /*#__PURE__*/React.createElement("li", null, this.props.item, /*#__PURE__*/React.createElement("button", {
         onClick: this.deleteItem
       }, "X"));
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("Bir eleman silindi.");
     }
   }]);
   return TodoItem;
