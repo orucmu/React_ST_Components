@@ -103,58 +103,32 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
   }]);
   return TodoApp;
 }(React.Component);
-console.log(React.Component);
-var Header = /*#__PURE__*/function (_React$Component2) {
-  _inherits(Header, _React$Component2);
-  var _super2 = _createSuper(Header);
-  function Header() {
-    _classCallCheck(this, Header);
-    return _super2.apply(this, arguments);
-  }
-  _createClass(Header, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("p", null, this.props.description));
-    }
-  }]);
-  return Header;
-}(React.Component);
-var TodoList = /*#__PURE__*/function (_React$Component3) {
-  _inherits(TodoList, _React$Component3);
-  var _super3 = _createSuper(TodoList);
-  function TodoList() {
-    _classCallCheck(this, TodoList);
-    return _super3.apply(this, arguments);
-  }
-  _createClass(TodoList, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (item, index) {
-        return /*#__PURE__*/React.createElement(TodoItem, {
-          key: index,
-          item: item,
-          deleteItem: _this2.props.deleteItem
-        });
-      })), /*#__PURE__*/React.createElement("button", {
-        onClick: this.props.clear
-      }, "Temizle"));
-    }
-  }]);
-  return TodoList;
-}(React.Component);
-var NewItem = /*#__PURE__*/function (_React$Component4) {
-  _inherits(NewItem, _React$Component4);
-  var _super4 = _createSuper(NewItem);
+var Header = function Header(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, props.title), /*#__PURE__*/React.createElement("p", null, props.description));
+};
+var TodoList = function TodoList(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, props.items.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(TodoItem, {
+      key: index,
+      item: item,
+      deleteItem: props.deleteItem
+    });
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: props.clear
+  }, "Temizle"));
+};
+var NewItem = /*#__PURE__*/function (_React$Component2) {
+  _inherits(NewItem, _React$Component2);
+  var _super2 = _createSuper(NewItem);
   function NewItem(props) {
-    var _this3;
+    var _this2;
     _classCallCheck(this, NewItem);
-    _this3 = _super4.call(this, props);
-    _this3.onFormSubmit = _this3.onFormSubmit.bind(_assertThisInitialized(_this3));
-    _this3.state = {
+    _this2 = _super2.call(this, props);
+    _this2.onFormSubmit = _this2.onFormSubmit.bind(_assertThisInitialized(_this2));
+    _this2.state = {
       error: ''
     };
-    return _this3;
+    return _this2;
   }
   _createClass(NewItem, [{
     key: "onFormSubmit",
@@ -189,34 +163,11 @@ var NewItem = /*#__PURE__*/function (_React$Component4) {
   }]);
   return NewItem;
 }(React.Component);
-var TodoItem = /*#__PURE__*/function (_React$Component5) {
-  _inherits(TodoItem, _React$Component5);
-  var _super5 = _createSuper(TodoItem);
-  function TodoItem(props) {
-    var _this4;
-    _classCallCheck(this, TodoItem);
-    _this4 = _super5.call(this, props);
-    _this4.deleteItem = _this4.deleteItem.bind(_assertThisInitialized(_this4));
-    return _this4;
-  }
-  _createClass(TodoItem, [{
-    key: "deleteItem",
-    value: function deleteItem() {
-      this.props.deleteItem(this.props.item);
+var TodoItem = function TodoItem(props) {
+  return /*#__PURE__*/React.createElement("li", null, props.item, /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      props.deleteItem(props.item);
     }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("li", null, this.props.item, /*#__PURE__*/React.createElement("button", {
-        onClick: this.deleteItem
-      }, "X"));
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      console.log("Bir eleman silindi.");
-    }
-  }]);
-  return TodoItem;
-}(React.Component);
+  }, "X"));
+};
 root.render( /*#__PURE__*/React.createElement(TodoApp, null));
